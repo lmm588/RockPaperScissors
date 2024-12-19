@@ -9,19 +9,24 @@ let hasGameFinished = false;
 let currentMessage = "";
 
 const getComputerChoice = () => {
-    players.computer["choice"] = Math.floor(Math.random() * 4) + 1; //Get a random number between 1 and 3.
+    players.computer["choice"] = Math.floor(Math.random() * 3) + 1; //Get a random number between 1 and 3.
 }
 
-const getUserChoice = () => {
-    document.querySelector(".icons-wrapper").addEventListener("click", (e) => {
-        let isButton = e.target.nodeName === "BUTTON";
+function resetGame() {
+    
+}
+
+const iconsWrapper = document.querySelector(".icons-wrapper");
+iconsWrapper.addEventListener("click", (e) => {
+        let isButton = e.target.nodeName === "IMG";
         if (!isButton) {
             return
-        } else players.user["choice"] = e.target.innerHTML;
+        } else players.user["choice"] = e.target.classList.value;
         getComputerChoice();
+        console.log(players.user["choice"]);
+        console.log(players.computer["choice"]);
         playRound(players.user["choice"], players.computer["choice"]);
-    });
-}
+});
 
 function playRound(userChoice, computerChoice) {
     switch (computerChoice) {
@@ -53,14 +58,17 @@ function calculateScore(result) {
 
     players.user["score"] = result.split(" ").includes("win") ? players.user["score"] += 1 :
     result.split(" ").includes("lose") ? players.user["score"] :
-    players.user["score"]
-
-    currentMessage = `Your opponent chose ${choices[+players.computer["choice"] - 1]}.. ` + result + `! The current score is Player: ${players.user["score"]} Computer: ${players.computer["score"]}`;
+    players.user["score"];
+    currentMessage = `You chose ${players.user["choice"]}. \r\n Your opponent chose ${choices[+players.computer["choice"] - 1]}.. ` + result + `!`;
     printCurrentMessage();
 }
 
 function printCurrentMessage() {
-    console.log(currentMessage);
+    document.querySelector(".result-text").textContent = currentMessage;
 }
 
-getUserChoice();
+function introAnimation () {
+    document.querySelector(".icons-wrapper").classList.add("animate");
+}
+
+setTimeout(introAnimation, 1000); 

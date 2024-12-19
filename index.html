@@ -5,16 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors!</title>
-    <style href="style.css" rel="Stylesheet"></style>
+    <link href="style.css" rel="Stylesheet">
+    </link>
 </head>
 
 <body>
     <div class="main-content">
-        <div class="header-text">
-            <div class="icons-wrapper">
-                <div class="rock"><button>rock</button></div>
-                <div class="paper"><button>paper</button></div>
-                <div class="scissors"><button>scissors</button></div>
+        <div class="icons-wrapper">
+            <div class="header-text" id="userName-text"></div>
+            <div class="header-text">CHOOSE WISELY..</div>
+            <div>
+                <img src="https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-2/512/hand-rock-512.png"
+                    class="rock">
+                <img src="https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-2/512/hand-paper-1024.png"
+                    class="paper">
+                <img src="https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-2/512/hand-scissors-512.png"
+                    class="scissors">
+            </div>
+        </div>
+        <div class="result-text"></div>
+        <div class=accordion-wrapper><button class="accordion">Round History</button>
+            <div class="panel">
+                <ul></ul>
             </div>
         </div>
     </div>
