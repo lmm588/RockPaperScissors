@@ -94,6 +94,7 @@ function calculateScore(result) {
     }
     if (players.computer["score"] === 5 || players.user["score"] === 5) {
         hasGameFinished = true;
+        document.getElementById("main-text").textContent = `Game over - ${result}!`;
     }
     currentMessage = hasGameFinished ? `Game over! You: ${players.user["score"]} Opponent: ${players.computer["score"]}` :
         `You chose ${players.user["choice"]}. \r\n 
