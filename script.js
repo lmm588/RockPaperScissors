@@ -4,13 +4,27 @@ let players = {
 };
 
 const choices = ["rock", "paper", "scissors"];
+const icons = [
+    rock = {
+        label: "rock",
+        src: "https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-2/512/hand-rock-512.png"},
+    paper = {
+        label: "paper",
+        src: "https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-2/512/hand-paper-1024.png"},
+    scissors = {
+        label: "scissors",
+        src: "https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-2/512/hand-scissors-512.png",}];
+
 let result = "";
 let hasGameFinished = false;
 let currentMessage = "";
-let roundCount = 0;
+let enemySelectionImage = "";
+let playerSelectionImage = "";
 
 const getComputerChoice = () => {
     players.computer["choice"] = Math.floor(Math.random() * 3) + 1; //Get a random number between 1 and 3.
+    enemySelectionImage = document.getElementById("enemy-selection-image");
+    enemySelectionImage.src = icons[players.computer["choice"] - 1].src;
 }
 
 function resetGame() {
@@ -23,17 +37,16 @@ iconsWrapper.addEventListener("click", (e) => {
     if (!isButton || hasGameFinished) {
         return
     } else players.user["choice"] = e.target.classList.value;
-    document.querySelector(".accordion").classList.remove("hidden")
+    let playerSelectionImage = document.getElementById("player-selection-image");
+    let iconSearch = icons.filter((icon) => icon.label === players.user["choice"]);
+    playerSelectionImage.src = iconSearch[0].src;
+    document.querySelector(".accordion").classList.remove("hidden");
     getComputerChoice();
-    console.log(players.user["choice"]);
-    console.log(players.computer["choice"]);
     playRound(players.user["choice"], players.computer["choice"]);
 });
 
 function playRound(userChoice, computerChoice) {
-    if (players.computer["score"] === 5 || players.user["score"] === 5) {
-        hasGameFinished = true;
-        calculateScore(result);
+    if (hasGameFinished) {
         return
     } else
         switch (computerChoice) {
@@ -79,10 +92,12 @@ function calculateScore(result) {
         document.getElementById("enemy-score").textContent = players.computer["score"];
         document.getElementById("player-score").textContent = players.user["score"];
     }
+    if (players.computer["score"] === 5 || players.user["score"] === 5) {
+        hasGameFinished = true;
+    }
     currentMessage = hasGameFinished ? `Game over! You: ${players.user["score"]} Opponent: ${players.computer["score"]}` :
         `You chose ${players.user["choice"]}. \r\n 
     Your opponent chose ${choices[+players.computer["choice"] - 1]}.. ` + result + `!`;
-    roundCount += 1;
     appendResult();
 }
 
