@@ -2,6 +2,36 @@
 
 * {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: auto;
+    width: auto;
+}
+
+body {
+    display:flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    background-color: whitesmoke;
+}
+
+#enemy-score {
+    color: red;
+}
+
+#enemy-icon {
+    margin-right: 20px;
+}
+
+#player-score {
+    color: green;
+}
+
+
+.headers {
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
 }
 
 
@@ -16,74 +46,89 @@ button {
 
 img {
     width: auto;
-    height: 70px;
+    display: inline-block;
+    height: 100px;
     cursor: pointer;
-    padding: 10px;
-    border-radius: 20px;
-    border: 2px solid white;
+    padding: 20px;
     margin-left: 20px;
 }
 
 img:hover {
-    transform: scale(1.3);
-    transition: 500ms;
+    transform: scale(1.1);
+    transition: transform 500ms ease-out;
+    border-radius: 2px;
+}
+
+.name-text {
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
 }
 
 .header-text {
     font-weight: 700;
-    font-size: 50px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
+    font-size: 70px;
+    text-align: center;
 }
 
-.selected {
-    border: 2px solid red;
-}
-
-.not-selected {
+.hidden {
     visibility: hidden;
 }
 
-.main-content {
-    height: 100vh;
+
+.scores {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .icons-wrapper {
     display: flex;
     flex-direction: column;
     opacity: 0;
+    height: 30%;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 50%;
 }
 
-.animate {
-    opacity: 1;
-    width: 100%;
-    transition: 1000ms;
+.selected {
+    border: 2px solid red;
+    border-radius: 100%;
 }
 
-.result-text {
-    white-space: break-spaces;
-    width: 100%;
-    margin-top: 10px;
-    height: 50px;
-    text-align: center;
+.computer-selection-wrapper {
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+}
+
+.selection-box {
+    border: 4px solid red;
+    margin-top: 20px;
+    border-radius: 10%;
+    align-self: center;
+    height: 150px;
+    width: 150px;
 }
 
 .accordion-wrapper {
-    align-self: center;
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
 }
 
 .accordion {
-    background-color: #eee;
-    color: #444;
+    background-color: black;
+    font-size: 20px;
+    width: 50%;
+    color: white;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
     text-align: left;
     border: none;
     outline: none;
@@ -91,13 +136,13 @@ img:hover {
 }
 
 .active, .accordion:hover {
-    background-color: #ccc;
+    background-color: #252525;
 }
 
 .accordion:after {
     content: '\02795'; 
     font-size: 13px;
-    color: #777;
+    color: red;
     float: right;
     margin-left: 5px;
   }
@@ -107,11 +152,20 @@ img:hover {
   }
 
 .panel {
-    padding: 0 18px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-    background-color: white;
-    display: none;
-    overflow: hidden;
+    background-color: gainsboro;
+    width: 50%;
+    overflow-y: scroll;
+    transition:transform 0.3s ease-out; 
+    max-height: 150px;
+    transform:scaleY(1);
+    transform-origin:top; 
+}
+
+.panel.collapsed {
+    transform: scaleY(0);
+}
+
+.animate {
+    opacity: 1;
+    transition: opacity 1000ms ease-out;
 }

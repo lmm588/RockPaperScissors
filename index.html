@@ -11,9 +11,8 @@
 
 <body>
     <div class="main-content">
+    <div class=header-text>Best of 5!</div>
         <div class="icons-wrapper">
-            <div class="header-text" id="userName-text"></div>
-            <div class="header-text">CHOOSE WISELY..</div>
             <div>
                 <img src="https://cdn0.iconfinder.com/data/icons/font-awesome-solid-vol-2/512/hand-rock-512.png"
                     class="rock">
@@ -23,14 +22,23 @@
                     class="scissors">
             </div>
         </div>
-        <div class="result-text"></div>
-        <div class=accordion-wrapper><button class="accordion">Round History</button>
-            <div class="panel">
-                <ul></ul>
+        <div class="scores">
+            <div class="player-score">
+                <div class="name-text">YOU</div>
+                <div class="name-text" id="player-score">0</div>
+            </div>
+            <div class="enemy-score">
+                <div class="name-text">ENEMY</div>
+                <div class="name-text" id="enemy-score">0</div>
             </div>
         </div>
+        </div>
     </div>
-    <script src="script.js" rel="Script"></script>
+    <div class=accordion-wrapper><button class="accordion">Round History</button>
+        <div class="panel collapsed">
+            <ol class="results-list"></ol>
+        </div>
+        <script src="script.js" rel="Script"></script>
 </body>
 
 </html>
